@@ -1,0 +1,43 @@
+[
+  {
+    "request_id": "FACE-20250501-001",
+    "selfie_path": "/mock/selfies/chen_wei_ming_001.jpg",
+    "is_live": true,
+    "confidence": 0.97,
+    "spoof_attempt": false,
+    "quality_score": 0.92,
+    "liveness_method": "passive_stereo",
+    "timestamp": "2025-05-01T08:15:22Z"
+  },
+  {
+    "request_id": "FACE-20250501-002",
+    "selfie_path": "/mock/selfies/tan_kok_leong_001.jpg",
+    "is_live": true,
+    "confidence": 0.89,
+    "spoof_attempt": false,
+    "quality_score": 0.85,
+    "liveness_method": "active_challenge",
+    "timestamp": "2025-05-01T09:30:45Z"
+  },
+  {
+    "request_id": "FACE-20250501-003",
+    "selfie_path": "/mock/selfies/ahmad_faizal_001.jpg",
+    "is_live": false,
+    "confidence": 0.34,
+    "spoof_attempt": true,
+    "quality_score": 0.71,
+    "liveness_method": "passive_stereo",
+    "spoof_detail": "Detected static image replay attack",
+    "timestamp": "2025-05-01T10:45:03Z"
+  },
+  {
+    "request_id": "FACE-20250501-004",
+    "selfie_path": "/mock/selfies/yuki_tanaka_001.jpg",
+    "is_live": true,
+    "confidence": 0.96,
+    "spoof_attempt": false,
+    "quality_score": 0.94,
+    "liveness_method": "passive_stereo",
+    "timestamp": "2025-05-01T11:22:18Z"
+  }
+]

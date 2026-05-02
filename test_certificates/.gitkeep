@@ -1,0 +1,2 @@
+# Placeholder — store test certificates (self-signed certs, JWT test keys, etc.) in this directory.
+# Do NOT commit production secrets.

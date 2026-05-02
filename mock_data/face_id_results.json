@@ -1,0 +1,67 @@
+[
+  {
+    "request_id": "FID-20250501-001",
+    "person_id": "ID-SG-000001",
+    "selfie_path": "/mock/selfies/chen_wei_ming_001.jpg",
+    "id_photo_path": "/mock/id_photos/chen_wei_ming_passport_photo.jpg",
+    "liveness_passed": true,
+    "face_match": true,
+    "similarity_score": 0.96,
+    "threshold": 0.85,
+    "passed": true,
+    "failure_reason": null,
+    "timestamp": "2025-05-01T08:16:00Z"
+  },
+  {
+    "request_id": "FID-20250501-002",
+    "person_id": "ID-SG-000002",
+    "selfie_path": "/mock/selfies/tan_kok_leong_001.jpg",
+    "id_photo_path": "/mock/id_photos/tan_kok_leong_nric_photo.jpg",
+    "liveness_passed": true,
+    "face_match": true,
+    "similarity_score": 0.91,
+    "threshold": 0.85,
+    "passed": true,
+    "failure_reason": null,
+    "timestamp": "2025-05-01T09:31:00Z"
+  },
+  {
+    "request_id": "FID-20250501-003",
+    "person_id": "ID-MY-000001",
+    "selfie_path": "/mock/selfies/ahmad_faizal_001.jpg",
+    "id_photo_path": "/mock/id_photos/ahmad_faizal_passport_photo.jpg",
+    "liveness_passed": false,
+    "face_match": true,
+    "similarity_score": 0.88,
+    "threshold": 0.85,
+    "passed": false,
+    "failure_reason": "Liveness check failed: static image replay detected",
+    "timestamp": "2025-05-01T10:46:00Z"
+  },
+  {
+    "request_id": "FID-20250501-004",
+    "person_id": "ID-JP-000001",
+    "selfie_path": "/mock/selfies/yuki_tanaka_001.jpg",
+    "id_photo_path": "/mock/id_photos/yuki_tanaka_passport_photo.jpg",
+    "liveness_passed": true,
+    "face_match": true,
+    "similarity_score": 0.98,
+    "threshold": 0.85,
+    "passed": true,
+    "failure_reason": null,
+    "timestamp": "2025-05-01T11:23:00Z"
+  },
+  {
+    "request_id": "FID-20250501-005",
+    "person_id": "ID-SG-000004",
+    "selfie_path": "/mock/selfies/john_doe_001.jpg",
+    "id_photo_path": "/mock/id_photos/john_doe_passport_photo.jpg",
+    "liveness_passed": true,
+    "face_match": false,
+    "similarity_score": 0.42,
+    "threshold": 0.85,
+    "passed": false,
+    "failure_reason": "Face mismatch: similarity score below threshold",
+    "timestamp": "2025-05-01T13:10:00Z"
+  }
+]

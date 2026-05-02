@@ -1,0 +1,57 @@
+[
+  {
+    "registration_number": "201812345H",
+    "company_name": "SUNRISE CROSS-BORDER TRADING PTE. LTD.",
+    "status": "active",
+    "incorporation_date": "2018-06-15",
+    "registered_address": "10 Anson Road, #23-14 International Plaza, Singapore 079903",
+    "directors": ["Chen Wei Ming", "Lim Siew Peng"],
+    "shareholders": ["Chen Wei Ming (60%)", "Lim Siew Peng (40%)"],
+    "business_activity": "Wholesale of electronic components",
+    "jurisdiction": "SG"
+  },
+  {
+    "registration_number": "202056789K",
+    "company_name": "ASIA-PACIFIC PAYMENT SOLUTIONS PTE. LTD.",
+    "status": "active",
+    "incorporation_date": "2020-03-22",
+    "registered_address": "71 Robinson Road, #14-01, Singapore 068895",
+    "directors": ["Tan Kok Leong", "Siti Nurhaliza Binte Abdullah"],
+    "shareholders": ["Tan Kok Leong (51%)", "Siti Nurhaliza Binte Abdullah (49%)"],
+    "business_activity": "Payment processing services",
+    "jurisdiction": "SG"
+  },
+  {
+    "registration_number": "201434567W",
+    "company_name": "GLOBAL TECH VENTURES LTD.",
+    "status": "suspended",
+    "incorporation_date": "2014-11-03",
+    "registered_address": "1 Raffles Place, #20-01 One Raffles Place, Singapore 048616",
+    "directors": ["Johnathan Goh"],
+    "shareholders": ["Johnathan Goh (100%)"],
+    "business_activity": "Software development and IT consultancy",
+    "jurisdiction": "SG"
+  },
+  {
+    "registration_number": "BN2019123456",
+    "company_name": "MERDEKA FINTECH HUB SDN. BHD.",
+    "status": "active",
+    "incorporation_date": "2019-08-10",
+    "registered_address": "Level 25, Menara Kuala Lumpur, 50088 Kuala Lumpur, Malaysia",
+    "directors": ["Ahmad Faizal Bin Hassan", "Nurul Iman Binti Razak"],
+    "shareholders": ["Ahmad Faizal Bin Hassan (70%)", "Nurul Iman Binti Razak (30%)"],
+    "business_activity": "Digital remittance and money services",
+    "jurisdiction": "MY"
+  },
+  {
+    "registration_number": "0105556123456",
+    "company_name": "SIAM LOGISTICS PARTNERS CO., LTD.",
+    "status": "dissolved",
+    "incorporation_date": "2016-02-28",
+    "registered_address": "888 Sukhumvit Road, Khlong Toei, Bangkok 10110, Thailand",
+    "directors": ["Somsak Chaiyaporn", "Pranee Rattanakosin"],
+    "shareholders": ["Somsak Chaiyaporn (50%)", "Pranee Rattanakosin (50%)"],
+    "business_activity": "Freight forwarding and logistics",
+    "jurisdiction": "TH"
+  }
+]

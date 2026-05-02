@@ -1,0 +1,65 @@
+[
+  {
+    "list_name": "UN Consolidated Sanctions List",
+    "entry_id": "UN-2024-00891",
+    "entity_type": "individual",
+    "full_name": "Kim Hyun-soo",
+    "aliases": ["Kim Hyun Su", "Hyun-soo Kim"],
+    "date_of_birth": "1975-04-12",
+    "nationality": "KP",
+    "passport_numbers": ["KP-8362914", "KP-9201447"],
+    "sanctions_reason": "Financing of weapons-of-mass-destruction programs",
+    "date_listed": "2024-02-18",
+    "source": "https://www.un.org/securitycouncil/sanctions/1718"
+  },
+  {
+    "list_name": "OFAC SDN List",
+    "entry_id": "OFAC-2025-00342",
+    "entity_type": "entity",
+    "company_name": "CRIMSON DRAGON HOLDINGS LTD.",
+    "registration_number": "BVI-1782345",
+    "jurisdiction": "VG",
+    "aliases": ["Crimson Dragon Ltd.", "CD Holdings"],
+    "sanctions_reason": "Sanctions evasion and illicit finance network",
+    "date_listed": "2025-01-22",
+    "source": "https://home.treasury.gov/policy-issues/financial-sanctions/specially-designated-nationals-and-blocked-persons-list-sdn"
+  },
+  {
+    "list_name": "OFAC SDN List",
+    "entry_id": "OFAC-2023-01872",
+    "entity_type": "individual",
+    "full_name": "Aleksandr Viktorovich Petrov",
+    "aliases": ["Alex Petrov", "Sasha Petrov"],
+    "date_of_birth": "1969-09-07",
+    "nationality": "RU",
+    "passport_numbers": ["RU-7531092846"],
+    "sanctions_reason": "Designated pursuant to E.O. 14024 for operating in the financial services sector of the Russian Federation economy",
+    "date_listed": "2023-11-15",
+    "source": "https://home.treasury.gov/policy-issues/financial-sanctions/specially-designated-nationals-and-blocked-persons-list-sdn"
+  },
+  {
+    "list_name": "EU Consolidated Sanctions List",
+    "entry_id": "EU-2024-00456",
+    "entity_type": "entity",
+    "company_name": "AL-MASRAF TRADING GROUP",
+    "registration_number": "DIC-99887",
+    "jurisdiction": "AE",
+    "aliases": ["Al Masraf Trading", "Masraf Group FZE"],
+    "sanctions_reason": "Terrorist financing and money laundering",
+    "date_listed": "2024-06-30",
+    "source": "https://data.europa.eu/euodp/en/data/dataset/consolidated-list-of-persons-groups-and-entities-subject-to-eu-financial-sanctions"
+  },
+  {
+    "list_name": "MAS (Singapore) Targeted Sanctions",
+    "entry_id": "MAS-2025-00112",
+    "entity_type": "individual",
+    "full_name": "Wong Kah Ho",
+    "aliases": ["Johnny Wong"],
+    "date_of_birth": "1982-11-25",
+    "nationality": "SG",
+    "passport_numbers": ["SG-E7891234K"],
+    "sanctions_reason": "Proliferation financing and violation of UNSCR 1718",
+    "date_listed": "2025-03-10",
+    "source": "https://www.mas.gov.sg/regulation/anti-money-laundering/targeted-financial-sanctions"
+  }
+]

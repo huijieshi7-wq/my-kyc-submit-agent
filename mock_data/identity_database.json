@@ -1,0 +1,57 @@
+[
+  {
+    "person_id": "ID-SG-000001",
+    "full_name": "Chen Wei Ming",
+    "date_of_birth": "1985-03-18",
+    "nationality": "SG",
+    "id_type": "passport",
+    "id_number": "E1234567A",
+    "issuing_country": "SG",
+    "expiry_date": "2029-07-12",
+    "address": "Blk 123, Tampines Street 11, #08-456, Singapore 521123"
+  },
+  {
+    "person_id": "ID-SG-000002",
+    "full_name": "Tan Kok Leong",
+    "date_of_birth": "1978-11-02",
+    "nationality": "SG",
+    "id_type": "national_id",
+    "id_number": "S7811023D",
+    "issuing_country": "SG",
+    "expiry_date": null,
+    "address": "15 Holland Hill, #05-11, Singapore 278735"
+  },
+  {
+    "person_id": "ID-MY-000001",
+    "full_name": "Ahmad Faizal Bin Hassan",
+    "date_of_birth": "1990-06-25",
+    "nationality": "MY",
+    "id_type": "passport",
+    "id_number": "A38291045",
+    "issuing_country": "MY",
+    "expiry_date": "2027-04-30",
+    "address": "No. 45, Jalan Ampang, Taman U-Thant, 55000 Kuala Lumpur, Malaysia"
+  },
+  {
+    "person_id": "ID-JP-000001",
+    "full_name": "Yuki Tanaka",
+    "date_of_birth": "1982-09-14",
+    "nationality": "JP",
+    "id_type": "passport",
+    "id_number": "TR8942317",
+    "issuing_country": "JP",
+    "expiry_date": "2031-01-05",
+    "address": "3-14-8 Roppongi, Minato-ku, Tokyo 106-0032, Japan"
+  },
+  {
+    "person_id": "ID-SG-000003",
+    "full_name": "Siti Nurhaliza Binte Abdullah",
+    "date_of_birth": "1988-12-07",
+    "nationality": "SG",
+    "id_type": "driver_license",
+    "id_number": "S8807129F",
+    "issuing_country": "SG",
+    "expiry_date": "2028-05-22",
+    "address": "22Greenleaf View, #02-01, Singapore 279235"
+  }
+]
