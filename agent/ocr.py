@@ -49,6 +49,42 @@ def _get_client() -> OpenAI:
 # ---------------------------------------------------------------------------
 _SUPPORTED_PDF_EXTS = {".pdf"}
 _SUPPORTED_IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif"}
+_MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024  # 10 MB
+
+
+def validate_image(image_path: str) -> bool:
+    """验证图片文件是否满足格式和大小要求。
+
+    检查项：
+    1. 文件路径存在
+    2. 扩展名是 jpg / jpeg / png
+    3. 文件大小不超过 10 MB
+
+    Args:
+        image_path: 图片文件路径。
+
+    Returns:
+        True 表示文件通过所有检查，可以安全使用。
+    """
+    # 文件存在性
+    if not os.path.exists(image_path):
+        print(f"validate_image: 文件不存在 - {image_path}")
+        return False
+
+    # 扩展名检查（只允许 jpg / jpeg / png）
+    ext = os.path.splitext(image_path)[1].lower()
+    if ext not in {".jpg", ".jpeg", ".png"}:
+        print(f"validate_image: 不支持的格式 '{ext}'，仅允许 jpg/jpeg/png")
+        return False
+
+    # 文件大小检查
+    file_size = os.path.getsize(image_path)
+    if file_size > _MAX_FILE_SIZE_BYTES:
+        size_mb = file_size / (1024 * 1024)
+        print(f"validate_image: 文件过大 {size_mb:.1f}MB（上限 10MB）")
+        return False
+
+    return True
 
 
 # ===================================================================
@@ -66,6 +102,8 @@ def extract_certificate_info(
     2. file_path 指向 PDF — 用 PyMuPDF 提取前3页文字发给 DeepSeek。
     3. file_path 指向图片 — 用 pytesseract OCR 提取文字后发给 DeepSeek。
 
+    API 调用失败时自动重试最多 2 次。
+
     Args:
         file_path: 证书文件路径（PDF 或图片）。
         text_content: 文字描述，传此参数时跳过文件读取。
@@ -79,6 +117,7 @@ def extract_certificate_info(
           - "registration_number": str | None    注册编号
           - "directors_or_shareholders": list | None  法定代表人或股东名称（最多3个）
           - "raw_confidence": str                HIGH / MEDIUM / LOW
+          - "quality_warning": str (仅 LOW 置信度时出现)
     """
     # ---- 参数校验 ----------------------------------------------------------
     if not file_path and not text_content:
@@ -86,7 +125,7 @@ def extract_certificate_info(
 
     # ---- 模式1：纯文字输入（优先级最高）------------------------------------
     if text_content:
-        return _call_llm_with_text(text_content)
+        return _call_llm_with_outer_retry(text_content)
 
     # ---- 模式2/3：文件路径 -------------------------------------------------
     ext = os.path.splitext(file_path)[1].lower()
@@ -112,7 +151,7 @@ def extract_certificate_info(
         if not ocr_text or not ocr_text.strip():
             return _error_dict("图片 OCR 未识别到文字内容")
 
-        return _call_llm_with_text(ocr_text)
+        return _call_llm_with_outer_retry(ocr_text)
 
     # PDF 分支：提取文字 → DeepSeek 分析
     try:
@@ -125,7 +164,7 @@ def extract_certificate_info(
             "PDF 无可提取的文字内容（可能是扫描件图片，请使用可选中文字的 PDF）"
         )
 
-    return _call_llm_with_text(pdf_text)
+    return _call_llm_with_outer_retry(pdf_text)
 
 
 # ===================================================================
@@ -239,6 +278,26 @@ _SYSTEM_PROMPT = """你是一个专业的 KYC（了解你的客户）文档审�
    - LOW：文字质量差，大部分信息不可读。
 5. 优先提取英文信息；如果证书上没有英文，则提取原文（中文、越南文、泰文等）。
 """
+
+
+def _call_llm_with_outer_retry(text: str) -> dict:
+    """extract_certificate_info 层级的重试包装。
+
+    调用 _call_llm_with_text，如果返回结果包含 "error" 键
+    （说明底层 _llm_api_call_with_retry 的 3 次重试均已耗尽），
+    则在当前层级再重试最多 2 次。
+    """
+    for attempt in range(3):  # 1 次原始 + 2 次外层重试
+        result = _call_llm_with_text(text)
+        if "error" not in result:
+            return result
+        if attempt < 2:
+            print(
+                f"  extract_certificate_info 外层重试 (第 {attempt + 2} 次)..."
+            )
+            time.sleep(2.0 * (attempt + 1))  # 2s → 4s 退避
+    # 3 次全部失败，返回最后一次的错误结果
+    return result
 
 
 def _call_llm_with_text(text: str) -> dict:
@@ -380,6 +439,10 @@ def _normalize_result(raw: dict) -> dict:
     if conf not in ("HIGH", "MEDIUM", "LOW"):
         conf = "LOW"
     result["raw_confidence"] = conf
+
+    # LOW 置信度时附加质量警告，提示用户重新上传
+    if conf == "LOW":
+        result["quality_warning"] = "图片质量较低，建议重新上传更清晰的图片"
 
     return result
 
@@ -554,6 +617,19 @@ if __name__ == "__main__":
         print(f"PDF 文字提取测试: {test_pdf}")
         result4 = extract_certificate_info(file_path=test_pdf)
         for k, v in result4.items():
+            print(f"  {k}: {v}")
+
+        # 串联 entity_recognizer 做实体标准化 & 风险初判
+        print()
+        print("-" * 40)
+        print("串联 entity_recognizer.analyze_entity：")
+        # 确保项目根目录在 sys.path 中（兼容直接 python agent/ocr.py 运行）
+        _proj_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        if _proj_root not in sys.path:
+            sys.path.insert(0, _proj_root)
+        from agent.entity_recognizer import analyze_entity
+        entity = analyze_entity(result4)
+        for k, v in entity.items():
             print(f"  {k}: {v}")
     else:
         print(f"PDF 测试跳过（文件不存在: {test_pdf}）")
